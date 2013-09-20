@@ -1,3 +1,3 @@
 on_turn do
-  'f'
+  act_aggressively
 end
