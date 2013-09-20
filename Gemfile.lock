@@ -25,5 +25,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler
   kablammo!
