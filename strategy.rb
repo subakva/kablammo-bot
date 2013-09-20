@@ -58,7 +58,7 @@ on_turn do
     act_aggressively
   elsif can_fire_at?(@current_target)
     if aiming_at?(@current_target)
-      fire_at!(@current_target)
+      fire_at!(@current_target, 0.75)
     else
       aim_at!(@current_target)
     end
