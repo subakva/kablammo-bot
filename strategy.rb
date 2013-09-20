@@ -1,3 +1,29 @@
+module Defensive
+  def dance
+    first_possible_move %w(n s e w).shuffle
+  end
+
+  def dodge(enemy)
+    toward = moves_toward enemy
+    d1 = enemy.distance_to robot.target_for(toward[1])
+    d2 = enemy.distance_to robot.target_for(toward[2])
+    if d1 > d2
+      moves = [ toward[1], toward[2], toward[3], toward[0] ]
+    else
+      moves = [ toward[2], toward[1], toward[3], toward[0] ]
+    end
+    first_possible_move moves
+  end
+
+  def act_defensively
+    enemy = opponents.first
+    return dance unless enemy
+    return dodge enemy if enemy.can_fire_at? me
+    return rest unless my.ammo_full?
+    move_away_from! enemy
+  end
+end
+
 module Aggressive
   def hunt
     x, y = robot.x, robot.y
@@ -31,6 +57,7 @@ module Aggressive
 end
 
 include Aggressive
+include Defensive
 
 def closest_enemy
   smallest_distance = 10000000
@@ -50,19 +77,22 @@ end
 
 @current_target = nil
 on_turn do
-  if @current_target.nil? || @current_target.dead?
-    @current_target = closest_enemy
-  end
+  act_defensively
+  # if @current_target.nil? || @current_target.dead?
+  #   @current_target = closest_enemy
+  # end
 
-  if @current_target.nil?
-    act_aggressively
-  elsif can_fire_at?(@current_target)
-    if aiming_at?(@current_target)
-      fire_at!(@current_target, 0.75)
-    else
-      aim_at!(@current_target)
-    end
-  else
-    move_towards!(@current_target)
-  end
+  # if my.ammo == 0
+  #   rest
+  # elsif @current_target.nil?
+  #   act_aggressively
+  # elsif can_fire_at?(@current_target)
+  #   if aiming_at?(@current_target)
+  #     fire_at!(@current_target, 0.75)
+  #   else
+  #     aim_at!(@current_target)
+  #   end
+  # else
+  #   move_towards!(@current_target)
+  # end
 end
