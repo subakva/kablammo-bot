@@ -16,3 +16,6 @@
     $ # OR....
     $ git remote add origin git@github.com:subakva/kablammo-bot.git
     $ git push origin master
+
+
+# Register your bot at: http://kablammo.io/strategies/new
