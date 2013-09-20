@@ -11,3 +11,8 @@
     $ echo "end" >> strategy.rb
     $ git add .
     $ git commit -m 'A terrible strategy.'
+
+    $ git create subakva/kablammo-bot
+    $ # OR....
+    $ git remote add origin git@github.com:subakva/kablammo-bot.git
+    $ git push origin master
