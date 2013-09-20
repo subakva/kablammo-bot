@@ -36,7 +36,10 @@ def closest_enemy
   smallest_distance = 10000000
   closest = nil
   opponents.each do |enemy|
+    puts "closest = #{closest}"
+    puts "smallest_distance = #{smallest_distance}"
     distance = robot.distance_to(enemy)
+    puts "distance = #{distance}"
     if distance < smallest_distance
       smallest_distance = distance
       closest = enemy
@@ -49,6 +52,10 @@ end
 on_turn do
   if @current_target.nil? || @current_target.dead?
     @current_target = closest_enemy
+  end
+
+  if @current_target.nil?
+    act_aggressively
   end
 
   if can_fire_at?(@current_target)
