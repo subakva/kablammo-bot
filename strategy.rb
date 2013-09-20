@@ -57,7 +57,11 @@ on_turn do
   if @current_target.nil?
     act_aggressively
   elsif can_fire_at?(@current_target)
-    fire_at!(@current_target)
+    if aiming_at?(@current_target)
+      fire_at!(@current_target)
+    else
+      aim_at!(@current_target)
+    end
   else
     move_towards!(@current_target)
   end
