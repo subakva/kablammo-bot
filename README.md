@@ -9,3 +9,5 @@
     $ echo "on_turn do" >> strategy.rb
     $ echo "  'f'" >> strategy.rb
     $ echo "end" >> strategy.rb
+    $ git add .
+    $ git commit -m 'A terrible strategy.'
