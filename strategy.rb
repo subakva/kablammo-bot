@@ -77,7 +77,7 @@ end
 
 @current_target = nil
 on_turn do
-  act_defensively
+  act_aggressively
   # if @current_target.nil? || @current_target.dead?
   #   @current_target = closest_enemy
   # end
