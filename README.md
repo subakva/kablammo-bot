@@ -18,4 +18,5 @@
     $ git push origin master
 
 
-# Register your bot at: http://kablammo.io/strategies/new
+Register your bot at: http://kablammo.io/strategies/new
+
