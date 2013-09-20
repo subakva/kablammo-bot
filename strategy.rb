@@ -55,7 +55,7 @@ on_turn do
   end
 
   if @current_target.nil?
-    act_aggressively
+    return act_aggressively
   end
 
   if can_fire_at?(@current_target)
