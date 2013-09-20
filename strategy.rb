@@ -32,6 +32,28 @@ end
 
 include Aggressive
 
+def closest_enemy
+  smallest_distance = 10000000
+  closest = nil
+  opponents.each do |enemy|
+    distance = robot.distance_to(enemy)
+    if distance < smallest_distance
+      smallest_distance = distance
+      closest = enemy
+    end
+  end
+  closest
+end
+
+@current_target = nil
 on_turn do
-  act_aggressively
+  if @current_target.nil? || @current_target.dead?
+    @current_target = closest_enemy
+  end
+
+  if can_fire_at?(@current_target)
+    return fire_at!(@current_target)
+  else
+    return move_towards!(@current_target)
+  end
 end
